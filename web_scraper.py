@@ -1,23 +1,24 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+import os
 
 from urllib.request import urlopen as ureq
 from bs4 import BeautifulSoup as soup
 
 
-
-url = 'https://www.amazon.com.au/'
+url = os.environ.get('URL_VAR')
 
 browser = webdriver.Chrome('C:\\Users\Leandro\Downloads\chromedriver.exe')
 browser.get(url)
 
 search = browser.find_element_by_name('field-keywords')
-search.send_keys("Laptop Lenovo")
+search.send_keys(os.environ.get('SEND_KEYS'))
 search.send_keys(Keys.ENTER)
 
 browser.implicitly_wait(15)
 #passing my url from selenium to bs4
 new_url = browser.current_url
+browser.implicitly_wait(2)
 client = ureq(new_url)
 html_scrap = client.read()
 client.close()

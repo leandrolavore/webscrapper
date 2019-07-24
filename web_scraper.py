@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import os
-
+import urllib
 from urllib.request import urlopen as ureq
 from bs4 import BeautifulSoup as soup
 
@@ -19,6 +19,7 @@ browser.implicitly_wait(15)
 #passing my url from selenium to bs4
 new_url = browser.current_url
 browser.implicitly_wait(2)
+
 client = ureq(new_url)
 html_scrap = client.read()
 client.close()
@@ -78,15 +79,3 @@ get_next_page()
 browser.implicitly_wait(10)
 file.close()
 
-
-# click_next = browser.find_element_by_partial_link_text("Next").click()
-# browser.implicitly_wait(15)
-#
-# new_url = browser.current_url
-# client = ureq(new_url)
-# html_scrap = client.read()
-# client.close()
-# html_soup = soup(html_scrap, "html.parser")
-# containers = html_soup.findAll("div", {"class": "s-include-content-margin s-border-bottom"})
-#
-# scrap_html(containers)

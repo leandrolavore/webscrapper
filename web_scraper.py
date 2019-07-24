@@ -79,3 +79,6 @@ get_next_page()
 browser.implicitly_wait(10)
 file.close()
 
+
+
+
